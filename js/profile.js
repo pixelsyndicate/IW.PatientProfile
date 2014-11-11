@@ -2,43 +2,32 @@ var DailyBgEventWithAverage;
 var DailyInsulinEventWithAverage;
 var DailyCarbsEventWithAverage;
 
-function RefreshAllCharts() {
 
-    p1BuildRefreshBg();
-    p1BuildRefreshInsulin();
-    p1BuildRefreshCarbs();
-    p2BuildRefreshBg();
-    p2BuildRefreshInsulin();
-    p2BuildRefreshCarbs();
 
-}
-
+$('a[data-toggle="tab"][data-patient="p0"]').on('shown.bs.tab', function (e) {
+    // alert('clicked by ' + e.elementId);
+    // var newTab = e.target; // newly activated tab
+    // var oldTab = e.relatedTarget; // previous active tab
+    p0BuildRefreshBg();
+    p0BuildRefreshInsulin();
+    p0BuildRefreshCarbs();
+});
 $('a[data-toggle="tab"][data-patient="p1"]').on('shown.bs.tab', function (e) {
     // alert('clicked by ' + e.elementId);
-    var newTab = e.target; // newly activated tab
-    var oldTab = e.relatedTarget; // previous active tab
+    // var newTab = e.target; // newly activated tab
+    // var oldTab = e.relatedTarget; // previous active tab
+
     p1BuildRefreshBg();
     p1BuildRefreshInsulin();
     p1BuildRefreshCarbs();
 });
-$('a[data-toggle="tab"][data-patient="p2"]').on('shown.bs.tab', function (e) {
-    // alert('clicked by ' + e.elementId);
-    var newTab = e.target; // newly activated tab
-    var oldTab = e.relatedTarget; // previous active tab
 
-    p2BuildRefreshBg();
-    p2BuildRefreshInsulin();
-    p2BuildRefreshCarbs();
-});
-$(window).on('resize', function () {
-    RefreshAllCharts();
-});
 
-function p1BuildRefreshBg() {
+function p0BuildRefreshBg() {
 
     DailyBgEventWithAverage = new Highcharts.Chart({
         chart: {
-            renderTo: "p1containerComboDailyBgWithAverage"
+            renderTo: "p0containerComboDailyBgWithAverage"
         },
         title: {
             text: 'Shelby\'s Blood Glucose History'
@@ -142,10 +131,10 @@ function p1BuildRefreshBg() {
     });
 }
 
-function p1BuildRefreshInsulin() {
+function p0BuildRefreshInsulin() {
     DailyInsulinEventWithAverage = new Highcharts.Chart({
         chart: {
-            renderTo: "p1containerComboDailyInsulinWithAverage"
+            renderTo: "p0containerComboDailyInsulinWithAverage"
         },
         title: {
             text: 'Shelby\'s Insulin History'
@@ -244,10 +233,10 @@ function p1BuildRefreshInsulin() {
     });
 }
 
-function p1BuildRefreshCarbs() {
+function p0BuildRefreshCarbs() {
     DailyCarbsEventWithAverage = new Highcharts.Chart({
         chart: {
-            renderTo: "p1containerComboDailyCarbsWithAverage"
+            renderTo: "p0containerComboDailyCarbsWithAverage"
         },
         title: {
             text: 'Shelby\'s Carbohydrate History'
@@ -349,11 +338,11 @@ function p1BuildRefreshCarbs() {
 
 
 
-function p2BuildRefreshBg() {
+function p1BuildRefreshBg() {
 
     DailyBgEventWithAverage = new Highcharts.Chart({
         chart: {
-            renderTo: "p2containerComboDailyBgWithAverage"
+            renderTo: "p1containerComboDailyBgWithAverage"
         },
         title: {
             text: 'Spencer\'s Blood Glucose History'
@@ -457,10 +446,10 @@ function p2BuildRefreshBg() {
     });
 }
 
-function p2BuildRefreshInsulin() {
+function p1BuildRefreshInsulin() {
     DailyInsulinEventWithAverage = new Highcharts.Chart({
         chart: {
-            renderTo: "p2containerComboDailyInsulinWithAverage"
+            renderTo: "p1containerComboDailyInsulinWithAverage"
         },
         title: {
             text: 'Spencer\'s Insulin History'
@@ -559,10 +548,10 @@ function p2BuildRefreshInsulin() {
     });
 }
 
-function p2BuildRefreshCarbs() {
+function p1BuildRefreshCarbs() {
     DailyCarbsEventWithAverage = new Highcharts.Chart({
         chart: {
-            renderTo: "p2containerComboDailyCarbsWithAverage"
+            renderTo: "p1containerComboDailyCarbsWithAverage"
         },
         title: {
             text: 'Spencer\'s Carbohydrate History'
@@ -662,10 +651,27 @@ function p2BuildRefreshCarbs() {
     });
 }
 
+
+
+function RefreshAllCharts() {
+
+    p0BuildRefreshBg();
+    p0BuildRefreshInsulin();
+    p0BuildRefreshCarbs();
+    p1BuildRefreshBg();
+    p1BuildRefreshInsulin();
+    p1BuildRefreshCarbs();
+
+}
+
+
+$(window).on('resize', function () {
+    RefreshAllCharts();
+});
+
 $().ready(function () {
     // BuildRefreshInsulin();
+    p0BuildRefreshBg();
     p1BuildRefreshBg();
-    p2BuildRefreshBg();
     //  BuildRefreshCarbs();
 });
-//  });
