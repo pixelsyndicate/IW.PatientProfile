@@ -1,0 +1,8 @@
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+
+    <li ng-repeat='patient in patients | orderBy: "fName"' role="presentation" class="">
+        <a href="#{{patient.id}}" role="tab" data-toggle="tab" data-patient="p0">{{patient.fName}}</a>
+    </li>
+
+</ul>

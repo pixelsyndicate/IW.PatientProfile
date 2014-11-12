@@ -1,3 +1,35 @@
+// Angular code will go in here to assist in keeping data relevant
+
+
+angular.module('IW', [])
+    .controller('PatientController', ['$scope',
+        function ($scope) {
+            $scope.patients = [
+                {
+                    id: 0,
+                    fName: 'Shelby',
+                    bDay: new Date('1998-10-8')
+                }, {
+                    id: 1,
+                    fName: 'Spencer',
+                    bDay: new Date('2000-11-6')
+                }, {
+                    id: 2,
+                    fName: 'Hunter',
+                    bDay: new Date('2000-11-6')
+                }, {
+                    id: 3,
+                    fName: 'Jorden',
+                    bDay: new Date('2000-11-6')
+                }];
+
+            $scope.currentTime = new Date();
+
+        }])
+
+
+
+
 var DailyBgEventWithAverage;
 var DailyInsulinEventWithAverage;
 var DailyCarbsEventWithAverage;

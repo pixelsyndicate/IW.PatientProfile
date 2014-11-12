@@ -1,0 +1,43 @@
+<!-- Tab pane for a patient -->
+<div role="tabpanel" class="tab-pane" id="patient0">
+    <div class="jumbotron">
+        <div class="row">
+            <img src="http://crowdresearch.csp.uwa.edu.au/wp-content/uploads/2014/09/female-profile.gif" alt="Shelby Dobson" class="img-thumbnail profilePhoto" />
+            <h1>{{fName}} Dobson</h1>
+        </div>
+        <p>Shelby was born on 10/8/1998 and has been a diabetic for only 4 years, 9 months and 5 days.</p>
+    </div>
+    <!-- end jumbo -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p class="col-sm-12">The last A1C test result was performed Doctors_Office_Test on 11/8/2014 and indicates and <span class="text-info">estimated average glucose (eAG)</span> of 171.42 mg/dl (milligrams per deciliter).</p>
+            <p class="col-sm-12">The diagnosis on 11/9/2010 was met with some some sadness, but because the most important things like '' and being a 'Student' keeps us going.</p>
+            <p class="col-sm-12">Total BG Readings = 5
+                <br />Total BG over 151 = 0
+                <br />Percent of high-blood glucose = 0</p>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div id="tabs">
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="active"><a href="#p0containerComboDailyBgWithAverage" role="tab" data-toggle="tab" data-patient="p0"><span>BG</span></a>
+                        </li>
+                        <li><a href="#p0containerComboDailyInsulinWithAverage" role="tab" data-toggle="tab" data-patient="p0"><span>Insulin</span></a>
+                        </li>
+                        <li><a href="#p0containerComboDailyCarbsWithAverage" role="tab" data-toggle="tab" data-patient="p0"><span>Carbs</span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="p0containerComboDailyBgWithAverage" style='min-width: 400px; height: 400px; margin: 0 auto'>categories: [ new Date(635241312000000000).toDateString(),new Date(635094432000000000).toDateString(),new Date(635314752000000000).toDateString(),new Date(635422752000000000).toDateString(),new Date(635510016000000000).toDateString() ], data: [ 288,288,288,288,288 ], data: [ 180,180,180,180,180 ], data: [ 75,75,75,75,75 ],</div>
+
+                        <div class="tab-pane" id="p0containerComboDailyInsulinWithAverage" style='min-width: 400px; height: 400px; margin: 0 auto'>categories: [ new Date(635241312000000000).toDateString(),new Date(635094432000000000).toDateString(),new Date(635314752000000000).toDateString(),new Date(635422752000000000).toDateString(),new Date(635510016000000000).toDateString() ], data: [ 5,5,5,5,5], data: [ ], data: [ ],</div>
+
+                        <div class="tab-pane" id="p0containerComboDailyCarbsWithAverage" style='min-width: 400px; height: 400px; margin: 0 auto'>categories: [ new Date(635241312000000000).toDateString(),new Date(635094432000000000).toDateString(),new Date(635314752000000000).toDateString(),new Date(635422752000000000).toDateString(),new Date(635510016000000000).toDateString() ], data: [ 99,99,99,99,99], data: [ 144,144,144,144,144], data: [ 200,200,200,200,200],</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
