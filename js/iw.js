@@ -1,31 +1,67 @@
 // Angular code will go in here to assist in keeping data relevant
+var myApp = angular.module('myApp', []);
+
+// angular config
+var iwConfig = function ($routeProvider) {
+    $routeProvider.when('/', {
+        controler: 'PatientController',
+        templateUrl: 'view/home.html'
+    })
+        .when('/patients/:patientId', {
+            controler: 'PatientController',
+            templateUrl: 'view/patient.html'
+        });
+};
+
+// angular namespace
+var IW = angular.module('IW', []).config(iwConfig);
+
+IW.service('PatientModel', function () {
+    this.getPatients = function () {
+        return [{
+            id: 0,
+            fName: 'Shelby',
+            bDay: new Date('1998-10-8')
+        }, {
+            id: 1,
+            fName: 'Spencer',
+            bDay: new Date('2000-11-6')
+        }, {
+            id: 2,
+            fName: 'Hunter',
+            bDay: new Date('2000-11-6')
+        }, {
+            id: 3,
+            fName: 'Jorden',
+            bDay: new Date('2000-11-6')
+        }];
+    };
+});
 
 
-angular.module('IW', [])
-    .controller('PatientController', ['$scope',
-        function ($scope) {
-            $scope.patients = [
-                {
-                    id: 0,
-                    fName: 'Shelby',
-                    bDay: new Date('1998-10-8')
-                }, {
-                    id: 1,
-                    fName: 'Spencer',
-                    bDay: new Date('2000-11-6')
-                }, {
-                    id: 2,
-                    fName: 'Hunter',
-                    bDay: new Date('2000-11-6')
-                }, {
-                    id: 3,
-                    fName: 'Jorden',
-                    bDay: new Date('2000-11-6')
-                }];
 
-            $scope.currentTime = new Date();
+IW.controller('NavController', function ($scope, $routeParams, $location, PatientModel) {
 
-        }])
+    var patients = PatientModel.getPatients();
+
+    $scope.patients;
+
+});
+
+IW.controller('PatientsController', function ($scope, PatientModel) {
+    $scope.currentTime = new Date();
+
+    var currentTime = new Date();
+    var patients = PatientModel.getPatients();
+    for (var i = 0; i < patients.length; i++) {
+        patients[i].details = DetailModel.getDetailsForPatient(patients[i].id);
+    }
+
+    $scope.patients = patients;
+    $scope.currentTime = currentTime;
+});
+
+
 
 
 
@@ -104,7 +140,7 @@ function p0BuildRefreshBg() {
                 text: "Blood Glucose (BG)"
             }
         },
-        series: [ // BG 
+        series: [ // BG
             {
                 type: "column",
                 name: "Breakfast",
@@ -211,7 +247,7 @@ function p0BuildRefreshInsulin() {
                 text: "Bolus Insulin"
             }
         },
-        series: [ // Insulin 
+        series: [ // Insulin
             {
                 type: "column",
                 name: "Breakfast",
@@ -239,7 +275,7 @@ function p0BuildRefreshInsulin() {
                     lineColor: Highcharts.getOptions().colors[3],
                     fillColor: "white"
                 }
-        }, { // PIES  
+        }, { // PIES
                 type: "pie",
                 name: "Avg. Insulin",
                 data: [{
@@ -313,7 +349,7 @@ function p0BuildRefreshCarbs() {
                 text: "Meal Carbohydrates"
             }
         },
-        series: [ // Insulin 
+        series: [ // Insulin
             {
                 type: "column",
                 name: "Breakfast",
@@ -419,7 +455,7 @@ function p1BuildRefreshBg() {
                 text: "Blood Glucose (BG)"
             }
         },
-        series: [ // BG 
+        series: [ // BG
             {
                 type: "column",
                 name: "Breakfast",
@@ -526,7 +562,7 @@ function p1BuildRefreshInsulin() {
                 text: "Bolus Insulin"
             }
         },
-        series: [ // Insulin 
+        series: [ // Insulin
             {
                 type: "column",
                 name: "Breakfast",
@@ -554,7 +590,7 @@ function p1BuildRefreshInsulin() {
                     lineColor: Highcharts.getOptions().colors[3],
                     fillColor: "white"
                 }
-        }, { // PIES  
+        }, { // PIES
                 type: "pie",
                 name: "Avg. Insulin",
                 data: [{
@@ -628,7 +664,7 @@ function p1BuildRefreshCarbs() {
                 text: "Meal Carbohydrates"
             }
         },
-        series: [ // Insulin 
+        series: [ // Insulin
             {
                 type: "column",
                 name: "Breakfast",
