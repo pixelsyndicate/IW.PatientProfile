@@ -2,7 +2,7 @@
 var myApp = angular.module('myApp', []);
 
 // angular config
-var iwConfig = function ($routeProvider) {
+/*var iwConfig = function ($routeProvider) {
     $routeProvider.when('/', {
         controler: 'PatientController',
         templateUrl: 'view/home.html'
@@ -11,13 +11,9 @@ var iwConfig = function ($routeProvider) {
             controler: 'PatientController',
             templateUrl: 'view/patient.html'
         });
-};
+};*/
 
 // angular namespace
 // var IW = angular.module('IW', []).config(iwConfig);
 
-myApp.controller('GreetingController', ['$scope',
-            function ($scope) {
-        $scope.greeting = 'Hola!';
-        $scope.currentTime = new Date();
-    }]);
+

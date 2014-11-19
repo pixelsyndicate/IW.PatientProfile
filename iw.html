@@ -21,21 +21,15 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-2.1.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/highcharts.js"></script>
+
     <!-- Angular Libraries -->
     <script src="https://code.angularjs.org/1.3.0-rc.5/angular.js"></script>
     <script src="https://code.angularjs.org/1.3.0-rc.5/angular-route.js"></script>
-
-    <!--Local JS and Setup-->
-    <script src="js/iw.js"></script>
-    <script src="model/PatientModel.js"></script>
-    <script src="controller/NavController.js"></script>
-    <script src="controller/PatientController.js"></script>
-    <!--    <script src="js/patientCharts.js"></script>-->
 
 
 
@@ -57,13 +51,13 @@
             <div class=" navbar-text navbar-right"></div>
             <div class="collapse navbar-collapse" id="iw-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="iw.html">Home</a>
+                    <li class="active"><a href="iw.html">Home</a>
                     </li>
                     <li><a href="About.html">About</a>
                     </li>
                     <li><a href="iw.html">Patients</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a class="username navbar-link" href="#">User: Admin</a>
                     </li>
                 </ul>
@@ -72,8 +66,9 @@
     </nav>
     <div class="container" role="main" style="position:absolute; top:80px;">
 
-        <h2 ng-controller="GreetingController">{{ greeting }} <small>{{currentTime | date:'h:mm:ss a'}}</small></h2>
 
+        <h2 id='greeting' ng-controller="GreetingController">{{ greeting }} <small>{{currentTime | date:'h:mm:ss a'}}</small></h2>
+        <h3>1 + 2 = {{1+2}}</h3>
         <br />
         <!-- Nav tabs -->
 
@@ -84,13 +79,13 @@
         </ul>
         <!-- Tab panes -->
         <div class="tab-content" ng-controller="PatientController">
-            <div ng-repeat="patient in patients" role="tabpanel" class="tab-pane active" id="p{{patient.id}}">
+            <div ng-repeat="patient in patients" role="tabpanel" class="tab-pane" id="p{{patient.id}}">
 
                 <div class="jumbotron">
-                    <div class="row">
-                        <img src="images/female-profile.gif" alt="{{patient.fName}}" class="img-thumbnail profilePhoto" />
-                        <h1>{{patient.fName}}</h1>
-                    </div>
+                    <!--                    <div class="row">-->
+                    <img src="images/female-profile.gif" alt="{{patient.fName}}" class="img-thumbnail profilePhoto" />
+                    <h1>{{patient.fName}}</h1>
+                    <!--                    </div>-->
                     <p>{{patient.fName}} was born on {{patient.bDate}} and has been a diabetic for only 4 years, 9 months and 5 days.</p>
                 </div>
                 <div class="panel panel-default">
@@ -137,386 +132,81 @@
             </div>
         </div>
         <br />
-     <div id="Questions" class="clearfix">
-    <div id="box20" class="row clearfix well">
-        <p id="text35">Got some feedback&#x3f;</p>
-        <p id="text36"> <span id="textspan12">Have questions&#x3f;<br />
+        <div id="Questions" class="clearfix">
+            <div id="box20" class="row clearfix well">
+                <p id="text35">Got some feedback&#x3f;</p>
+                <p id="text36"> <span id="textspan12">Have questions&#x3f;<br />
                     </span>Ask us through <a id="textspan13" href="mailto:wdobson@pixelsyndicate.com" target="_blank">E-Mail</a>
 
-            <br />
-        </p>
-        <p id="text37"> <span id="textspan14">Love us&#x3f; Hate us&#x3f;<br />
+                    <br />
+                </p>
+                <p id="text37"> <span id="textspan14">Love us&#x3f; Hate us&#x3f;<br />
                     </span>Talk to us on <a id="textspan15" href="https://twitter.com/wildobson" target="_blank">Twitter</a>, or <a id="textspan16" href="https://www.facebook.com/wildobson" target="_blank">Facebook&nbsp;</a>
 
-            <br />
-        </p>
-        <p id="text38"> <span id="textspan17">Did you find a bug&#x3f; Have a feature request&#x3f;<br />
+                    <br />
+                </p>
+                <p id="text38"> <span id="textspan17">Did you find a bug&#x3f; Have a feature request&#x3f;<br />
                     </span>Talk to the team using the feedback button to the right, or post it on our public issues on <a id="textspan18" href="https://github.com/pixelsyndicate" target="_blank">Github Issues.&nbsp;</a>
 
-        </p>
-        <div id="box21" class="clearfix"></div>
-    </div>
-</div>
-<footer>
-    <div class="content-wrapper">
-        <div class="pull-left">
-            <p>&copy; 2014 - The Pixel Syndicate</p>
+                </p>
+                <div id="box21" class="clearfix"></div>
+            </div>
         </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="pull-left">
+                    <p>&copy; 2014 - The Pixel Syndicate</p>
+                </div>
+            </div>
+        </footer>
     </div>
-</footer>
-    </div>
+
+
+
+    <script src="js/highcharts.js"></script>
+    <!--Local JS and Setup-->
+    <script src="js/iw.js"></script>
+    <script src="model/PatientModel.js"></script>
+    <script src="controller/Controllers.js"></script>
+    <script src="js/patientCharts.js"></script>
 
     <script type="text/javascript">
         function RefreshAllCharts() {
-
-            BuildRefreshBg(0, 'nameHere');
-            BuildRefreshInsulin(0, 'nameHere');
-            BuildRefreshCarbs(0, 'nameHere');
-
+            for (var i = 0; i <= 3; i++) {
+                BindBg(i, 'nameHere');
+                BindInsulin(i, 'nameHere');
+                BindCarbs(i, 'nameHere');
+            }
 
         }
-        $(window).on('resize', function () {
-            RefreshAllCharts();
-        });
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             e.target // newly activated tab
             e.relatedTarget // previous active tab
             alert('Chart Tab shown is "' + e.target + '" but was "' + e.relatedTarget + '"');
-            alert('data-patient value = ' + e.data('patient'));
-        })
-
-         $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
-            e.target // newly activated tab
-            e.relatedTarget // previous active tab
-            alert('Chart Tab shown is "' + e.target + '" but was "' + e.relatedTarget + '"');
-            alert('data-patient value = ' + e.data('patient'));
-
+            //alert('data-patient value = ' + e.data('patient'));
+            $('#greeting').fadeToggle();
         })
 
          $().ready(function () {
+            $('a[data-toggle="tab"]:first').tab('show');
+        });
 
-            //$('#patientTabs a[data-patient="p0"]').tab('show');
-            //$('#chartPill{{patient.id}}').tab('show');
-
-            $('#patientTabs a:first').tab("show");
-
+        $(window).on('resize', function () {
+            RefreshAllCharts();
         });
 
 
 
+        $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+            e.target // newly activated tab
+            e.relatedTarget // previous active tab
+
+            //alert('Chart Tab shown is "' + e.target + '" but was "' + e.relatedTarget + '"');
+            alert('data-patient value = ' + e.data('patient'));
 
 
-
-        function BuildRefreshBg(p1, p2) {
-
-            DailyBgEventWithAverage = new Highcharts.Chart({
-                chart: {
-                    renderTo: "bg" + p1
-                },
-                title: {
-                    text: p2 + '\'s Blood Glucose History'
-                },
-                subtitle: {
-                    text: "Source: Insulin Wizard Mobile (pixelsyndicate.com)"
-                },
-                labels: { // pie chart descriptions
-                    items: [{
-                        html: 'Avg. BG',
-                        style: {
-                            left: '10px',
-                            top: '28px',
-                            color: 'black'
-                        }
-            }]
-                },
-                tooltip: {
-                    formatter: function () {
-                        var s;
-                        if (this.point.name) { // the pie chart
-                            s = '<b> ' + this.series.name + '</b><br />' + this.point.name + ' ' + this.y + ' ';
-                        } else if (this.point.series) { // the column chart
-                            s = '<b>' + this.series.name + '</b>: <BR>' + this.y + ' ' + (this.series.name === 'Bolus Given' ? ' units' : 'bg') + ' of ' + this.y + '';
-                        } else {
-                            s = '' + this.y + ' BG';
-                        }
-                        return s;
-                    }
-                },
-                xAxis: {
-                    categories: ["Jan 2014",
-                "Feb 2014", "Mar 2014", "Apr 2014", "May 2014"],
-                    type: "datetime",
-                    dateTimeLabelFormats: {
-                        month: "%e. %b",
-                        year: "%b"
-                    }
-                },
-                yAxis: { // Primary yAxis
-                    title: {
-                        text: "Blood Glucose (BG)"
-                    }
-                },
-                series: [ // BG
-                    {
-                        type: "column",
-                        name: "Breakfast",
-                        data: [288, 288, 288, 288, 288]
-        }, {
-                        type: "column",
-                        name: "Lunch",
-                        data: [180, 180, 180, 180, 180]
-        }, {
-                        type: "column",
-                        name: "Dinner",
-                        data: [75, 75, 75, 75, 75]
-        }, {
-                        type: "column",
-                        name: "Bedtime",
-                        data: [140, 151, 197, 228, 163]
-        }, {
-                        type: "spline",
-                        name: "Daily Avg. BG",
-                        data: [187, 215, 194, 216, 285],
-                        marker: {
-                            lineWidth: 2,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white"
-                        }
-        }, {
-                        type: "pie",
-                        name: "Avg BG",
-                        data: [{
-                            name: "Breakfast",
-                            y: 198,
-                            color: "#4572A7"
-            }, {
-                            name: "Lunch",
-                            y: 219,
-                            color: "#AA4643"
-            }, {
-                            name: "Dinner",
-                            y: 195,
-                            color: "#89A54E" // Dinner's color
-            }, {
-                            name: "Bedtime",
-                            y: 202,
-                            color: "#80699B" // Bedtimes's color
-            }],
-                        center: [45, 2],
-                        size: 50,
-                        showInLegend: false,
-                        dataLabels: {
-                            enabled: false
-                        }
-        }]
-            });
-        }
-
-        function BuildRefreshInsulin(p1, p2) {
-            DailyInsulinEventWithAverage = new Highcharts.Chart({
-                chart: {
-                    renderTo: "insulin" + p1
-                },
-                title: {
-                    text: p2 + '\'s Insulin History'
-                },
-                subtitle: {
-                    text: "Source: Insulin Wizard Mobile (pixelsyndicate.com)"
-                },
-                labels: { // pie chart descriptions
-                    items: [{
-                        html: 'Avg. Insulin',
-                        style: {
-                            left: '10px',
-                            top: '28px',
-                            color: 'black'
-                        }
-            }]
-                },
-                tooltip: {
-                    formatter: function () {
-                        var s;
-                        if (this.point.name) { // the pie chart
-                            s = '<b> ' + this.series.name + '</b><br />' + this.point.name + ' ' + this.y + ' ';
-                        } else if (this.point.series) { // the column chart
-                            s = '<b>' + this.series.name + '</b>: <BR>' + this.y + ' ' + (this.series.name == 'Bolus Given' ? ' units' : 'bg') + ' of ' + this.y + '';
-                        } else {
-                            s = '' + this.y + ' BG';
-                        }
-                        return s;
-                    }
-                },
-                xAxis: {
-                    categories: ["Jan 2014",
-                "Feb 2014", "Mar 2014", "Apr 2014", "May 2014"],
-                    type: "datetime",
-                    dateTimeLabelFormats: {
-                        month: "%e. %b",
-                        year: "%b"
-                    }
-                },
-                yAxis: { // Primary yAxis
-                    title: {
-                        text: "Bolus Insulin"
-                    }
-                },
-                series: [ // Insulin
-                    {
-                        type: "column",
-                        name: "Breakfast",
-                        data: [5, 5, 5, 5, 5]
-        }, {
-                        type: "column",
-                        name: "Lunch",
-                        data: [
-            3, 3, 3, 3, 3]
-        }, {
-                        type: "column",
-                        name: "Dinner",
-                        data: [
-            7, 7, 7, 7, 7]
-        }, {
-                        type: "column",
-                        name: "Bedtime",
-                        data: [4, 5, 9, 2, 6]
-        }, {
-                        type: "spline",
-                        name: "Average Bolus",
-                        data: [7, 8, 6, 4, 5],
-                        marker: {
-                            lineWidth: 1,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white"
-                        }
-        }, { // PIES
-                        type: "pie",
-                        name: "Avg. Insulin",
-                        data: [{
-                            name: "Breakfast",
-                            y: 7.57,
-                            color: "#4572A7"
-            }, {
-                            name: "Lunch",
-                            y: 4.61,
-                            color: "#AA4643"
-            }, {
-                            name: "Dinner",
-                            y: 6.45,
-                            color: "#89A54E" // Dinner's color
-            }],
-                        center: [45, 2],
-                        size: 50,
-                        showInLegend: false,
-                        dataLabels: {
-                            enabled: false
-                        }
-        }]
-            });
-        }
-
-        function BuildRefreshCarbs(p1, p2) {
-            DailyCarbsEventWithAverage = new Highcharts.Chart({
-                chart: {
-                    renderTo: "carbs" + p1
-                },
-                title: {
-                    text: p2 + '\'s Carbohydrate History'
-                },
-                subtitle: {
-                    text: "Source: Insulin Wizard Mobile (pixelsyndicate.com)"
-                },
-                labels: { // pie chart descriptions
-                    items: [{
-                        html: 'Avg. Carbs',
-                        style: {
-                            left: '10px',
-                            top: '28px',
-                            color: 'black'
-                        }
-            }]
-                },
-                tooltip: {
-                    formatter: function () {
-                        var s;
-                        if (this.point.name) { // the pie chart
-                            s = '<b> ' + this.series.name + '</b><br />' + this.point.name + ' ' + this.y + ' ';
-                        } else if (this.point.series) { // the column chart
-                            s = '<b>' + this.series.name + '</b>: <BR>' + this.y + ' ' + (this.series.name == 'Bolus Given' ? ' units' : 'bg') + ' of ' + this.y + '';
-                        } else {
-                            s = '' + this.y + ' BG';
-                        }
-                        return s;
-                    }
-                },
-                xAxis: {
-                    categories: ["Jan 2014",
-                "Feb 2014", "Mar 2014", "Apr 2014", "May 2014"],
-                    type: "datetime",
-                    dateTimeLabelFormats: {
-                        month: "%e. %b",
-                        year: "%b"
-                    }
-                },
-                yAxis: { // Primary yAxis
-                    title: {
-                        text: "Meal Carbohydrates"
-                    }
-                },
-                series: [ // Insulin
-                    {
-                        type: "column",
-                        name: "Breakfast",
-                        data: [
-            99, 99, 99, 99, 99]
-        }, {
-                        type: "column",
-                        name: "Lunch",
-                        data: [
-            144, 144, 144, 144, 144]
-        }, {
-                        type: "column",
-                        name: "Dinner",
-                        data: [
-            200, 200, 200, 200, 200]
-        }, {
-                        type: "column",
-                        name: "Bedtime",
-                        data: [4, 5, 9, 2, 6, 3]
-        }, {
-                        type: "spline",
-                        name: "Average Carbs",
-                        data: [7, 8, 6, 4, 5, 9],
-                        marker: {
-                            lineWidth: 1,
-                            lineColor: Highcharts.getOptions().colors[3],
-                            fillColor: "white"
-                        }
-        }, {
-                        type: "pie",
-                        name: "Avg Carbs",
-                        data: [{
-                            name: "Breakfast",
-                            y: 95,
-                            color: "#4572A7"
-            }, {
-                            name: "Lunch",
-                            y: 81,
-                            color: "#AA4643"
-            }, {
-                            name: "Dinner",
-                            y: 98,
-                            color: "#89A54E" // Dinner's color
-            }],
-                        center: [45, 2],
-                        size: 50,
-                        showInLegend: false,
-                        dataLabels: {
-                            enabled: false
-                        }
-        }]
-            });
-        }
+        })
     </script>
 </body>
 
