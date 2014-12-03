@@ -27,11 +27,13 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- Angular Libraries -->
-    <script src="https://code.angularjs.org/1.3.0-rc.5/angular.js"></script>
-    <script src="https://code.angularjs.org/1.3.0-rc.5/angular-route.js"></script>
+    <script src="js/highcharts.js"></script>
 
-
+    <!-- now some local code  -->
+    <script src="js/namespace.js"></script>
+    <script src="js/graphs.types.js"></script>
+    <script src="js/facade.js"></script>
+    <script src="js/factory.js"></script>
 
 </head>
 
@@ -39,101 +41,89 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#iw-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#iw-navbar-collapse"> <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img id="image" src="/Images/ME180710_boluswizard.jpg" class="navbar-wizard" />The Insulin Wizard</a>
+                    <img id="image" src="/Images/ME180710_boluswizard.jpg" class="img" style='height:160%; margin-top:-5px; margin-right:5px;' />The Insulin Wizard</a>
+
             </div>
             <div class=" navbar-text navbar-right"></div>
             <div class="collapse navbar-collapse" id="iw-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="iw.html">Home</a>
+                    <li><a href="/">Home</a>
+
                     </li>
-                    <li><a href="About.html">About</a>
+                    <li><a href="/Home/About">About</a>
+
                     </li>
-                    <li><a href="iw.html">Patients</a>
+                    <li><a href="/Patients">Patients</a>
+
                     </li>
-                    <li>
-                        <a class="username navbar-link" href="#">User: Admin</a>
+                    <li class="active">
+                        <section id="login"> <a class="username navbar-link" href="#">[EVENT ALERT]</a>
+
+                        </section>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container" role="main" style="position:absolute; top:80px;">
+    <div class="container" role="main">
+        <div id="body" class="col-sm-12">
+            <section>
 
+                <h2>View Your Patients</h2>
 
-        <h2 id='greeting' ng-controller="GreetingController">{{ greeting }} <small>{{currentTime | date:'h:mm:ss a'}}</small></h2>
-        <h3>1 + 2 = {{1+2}}</h3>
-        <br />
-        <!-- Nav tabs -->
+                <div class="col-md-6">
+                    <div class="jumbotron">
+                        <img src="images/female-profile.gif" alt="Shelby Dobson" class="img img-responsive img-thumbnail pull-left" style="max-width:150px; margin-right:25px;" />
+                        <h1 class="clearfix">Some Customer</h1>
 
-        <ul id="patientTabs" class="nav nav-tabs" role="tablist" ng-controller='PatientController'>
-            <li ng-repeat='patient in patients' role="presentation">
-                <a href="#p{{patient.id}}" role="tab" data-toggle="tab" data-patient="p{{patient.id}}">{{patient.fName}}</a>
-            </li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content" ng-controller="PatientController">
-            <div ng-repeat="patient in patients" role="tabpanel" class="tab-pane" id="p{{patient.id}}">
-
-                <div class="jumbotron">
-                    <!--                    <div class="row">-->
-                    <img src="images/female-profile.gif" alt="{{patient.fName}}" class="img-thumbnail profilePhoto" />
-                    <h1>{{patient.fName}}</h1>
-                    <!--                    </div>-->
-                    <p>{{patient.fName}} was born on {{patient.bDate}} and has been a diabetic for only 4 years, 9 months and 5 days.</p>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Charts</h3>
+                        <p>Some Customer was born on 10/8/1998 and has been a customer for only 4 years, 9 months and 5 days.</p>
                     </div>
-                    <div class="panel-body">
-                        <ul id="chartPills" class="nav nav-pills" role="tablist" data-patient="p{{patient.id}}" ]>
-                            <li><a href="#bg{{patient.id}}" role="tab" data-toggle="pill"><span>BG</span></a>
-                            </li>
-                            <li><a href="#insulin{{patient.id}}" role="tab" data-toggle="pill"><span>Insulin</span></a>
-                            </li>
-                            <li><a href="#carbs{{patient.id}}" role="tab" data-toggle="pill"><span>Carbs</span></a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane" id="bg{{patient.id}}" style='min-width: 400px; height: 400px; margin: 0 auto'>
-                                categories: [ new Date(635241312000000000).toDateString(),new Date(635094432000000000).toDateString(),new Date(635314752000000000).toDateString(),new Date(635422752000000000).toDateString(),new Date(635510016000000000).toDateString() ], data: [ 288,288,288,288,288 ], data: [ 180,180,180,180,180 ], data: [ 75,75,75,75,75 ]</div>
-
-                            <div class="tab-pane" id="insulin{{patient.id}}" style='min-width: 400px; height: 400px; margin: 0 auto'>
-                                categories: [ new Date(635241312000000000).toDateString(),new Date(635094432000000000).toDateString(),new Date(635314752000000000).toDateString(),new Date(635422752000000000).toDateString(),new Date(635510016000000000).toDateString() ], data: [ 5,5,5,5,5], data: [ ], data: [ ],</div>
-
-                            <div class="tab-pane" id="carbs{{patient.id}}" style='min-width: 400px; height: 400px; margin: 0 auto'>
-                                categories: [ new Date(635241312000000000).toDateString(),new Date(635094432000000000).toDateString(),new Date(635314752000000000).toDateString(),new Date(635422752000000000).toDateString(),new Date(635510016000000000).toDateString() ], data: [ 99,99,99,99,99], data: [ 144,144,144,144,144], data: [ 200,200,200,200,200],</div>
+                    <!-- end jumbo -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-12">The last A1C test result was performed Doctors_Office_Test on 11/8/2014 and indicates and <span class="text-info">estimated average glucose (eAG)</span> of 171.42 mg/dl (milligrams per deciliter).</div>
+                            <div class="col-sm-12">The diagnosis on 11/9/2010 was met with some some sadness, but because the most important things like '' and being a 'Student' keeps us going.</div>
+                            <div class="col-sm-12">Total BG Readings = 5
+                                <br />Total BG over 151 = 0
+                                <br />Percent of high-blood glucose = 0</div>
                         </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div id="tabs">
+                            <ul class="nav nav-pills" role="tablist">
+                                <li class="active"><a href="#p1containerComboDailyBgWithAverage" role="tab" data-toggle="tab" data-patient="p1"><span>BG</span></a>
 
+                                </li>
+                                <li><a href="#p1containerComboDailyInsulinWithAverage" role="tab" data-toggle="tab" data-patient="p1"><span>Insulin</span></a>
+
+                                </li>
+                                <li><a href="#p1containerComboDailyCarbsWithAverage" role="tab" data-toggle="tab" data-patient="p1"><span>Carbs</span></a>
+
+                                </li>
+                                <li><a href="#dynabindable" role="tab" data-toggle="tab" data-patient="p1"><span>Bindable</span></a>
+
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="p1containerComboDailyBgWithAverage" style='min-width: 400px; height: 400px; margin: 0 auto'>this is awaiting to be bound.</div>
+                                <div class="tab-pane" id="p1containerComboDailyInsulinWithAverage" style='min-width: 400px; height: 400px; margin: 0 auto'>this is awaiting to be bound.</div>
+                                <div class="tab-pane" id="p1containerComboDailyCarbsWithAverage" style='min-width: 400px; height: 400px; margin: 0 auto'>this is awaiting to be bound.</div>
+                                <div class="tab-pane  chart bar" id="dynabindable" data-title="Bindable" data-url="sampleComplexChartData.json" style='min-width: 400px; height: 400px; margin: 0 auto'>this is awaiting to be bound.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Info</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p class="col-sm-12">The last A1C test result was performed Doctors_Office_Test on 11/8/2014 and indicates and <span class="text-info">estimated average glucose (eAG)</span> of 171.42 mg/dl (milligrams per deciliter).</p>
-                        <p class="col-sm-12">The diagnosis on 11/9/2010 was met with some some sadness, but because the most important things like '' and being a 'Student' keeps us going.</p>
-                        <p class="col-sm-12">Total BG Readings = 5
-                            <br />Total BG over 151 = 0
-                            <br />Percent of high-blood glucose = 0</p>
-                    </div>
-                </div>
-
-
-            </div>
+            </section>
         </div>
-        <br />
         <div id="Questions" class="clearfix">
-            <div id="box20" class="row clearfix well">
+            <div id="box20" class="clearfix">
                 <p id="text35">Got some feedback&#x3f;</p>
                 <p id="text36"> <span id="textspan12">Have questions&#x3f;<br />
                     </span>Ask us through <a id="textspan13" href="mailto:wdobson@pixelsyndicate.com" target="_blank">E-Mail</a>
@@ -161,53 +151,7 @@
         </footer>
     </div>
 
-
-
-    <script src="js/highcharts.js"></script>
-    <!--Local JS and Setup-->
     <script src="js/iw.js"></script>
-    <script src="model/PatientModel.js"></script>
-    <script src="controller/Controllers.js"></script>
-    <script src="js/patientCharts.js"></script>
-
-    <script type="text/javascript">
-        function RefreshAllCharts() {
-            for (var i = 0; i <= 3; i++) {
-                BindBg(i, 'nameHere');
-                BindInsulin(i, 'nameHere');
-                BindCarbs(i, 'nameHere');
-            }
-
-        }
-
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            e.target // newly activated tab
-            e.relatedTarget // previous active tab
-            alert('Chart Tab shown is "' + e.target + '" but was "' + e.relatedTarget + '"');
-            //alert('data-patient value = ' + e.data('patient'));
-            $('#greeting').fadeToggle();
-        })
-
-         $().ready(function () {
-            $('a[data-toggle="tab"]:first').tab('show');
-        });
-
-        $(window).on('resize', function () {
-            RefreshAllCharts();
-        });
-
-
-
-        $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
-            e.target // newly activated tab
-            e.relatedTarget // previous active tab
-
-            //alert('Chart Tab shown is "' + e.target + '" but was "' + e.relatedTarget + '"');
-            alert('data-patient value = ' + e.data('patient'));
-
-
-        })
-    </script>
 </body>
 
 </html>

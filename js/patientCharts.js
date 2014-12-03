@@ -8,7 +8,7 @@ var DailyBgEventWithAverage, DailyInsulinEventWithAverage, DailyCarbsEventWithAv
 
 function BindBg(p1, p2) {
 
-    DailyBgEventWithAverage = new Highcharts.Chart({
+    new Highcharts.Chart({
         chart: {
             renderTo: "bg" + p1
         },
@@ -112,7 +112,7 @@ function BindBg(p1, p2) {
 }
 
 function BindInsulin(p1, p2) {
-    DailyInsulinEventWithAverage = new Highcharts.Chart({
+    new Highcharts.Chart({
         chart: {
             renderTo: "insulin" + p1
         },
@@ -214,7 +214,7 @@ function BindInsulin(p1, p2) {
 }
 
 function BindCarbs(p1, p2) {
-    DailyCarbsEventWithAverage = new Highcharts.Chart({
+    new Highcharts.Chart({
         chart: {
             renderTo: "carbs" + p1
         },
@@ -315,3 +315,55 @@ function BindCarbs(p1, p2) {
         }]
     });
 }
+
+
+// this is some sample JSON data to play with
+var myJsonData = {
+    categories: [
+    new Date(635241312000000000).toDateString(),
+    new Date(635094432000000000).toDateString(),
+    new Date(635314752000000000).toDateString(),
+    new Date(635422752000000000).toDateString(),
+    new Date(635510016000000000).toDateString()],
+    series: [{
+        type: "column",
+        name: "Breakfast",
+        data: [288, 288, 288, 288, 288]
+    }, {
+        type: "column",
+        name: "Lunch",
+        data: [180, 180, 180, 180, 180]
+    }, {
+        type: "column",
+        name: "Dinner",
+        data: [75, 75, 75, 75, 75]
+    }, {
+        type: "column",
+        name: "Bedtime",
+        data: [140, 151, 197, 228, 163]
+    }, {
+        type: "spline",
+        name: "Daily Avg. BG",
+        data: [187, 215, 194, 216, 285]
+    }, {
+        type: "pie",
+        name: "Avg BG",
+        data: [{
+            name: "Breakfast",
+            y: 198,
+            color: "#4572A7"
+        }, {
+            name: "Lunch",
+            y: 219,
+            color: "#AA4643"
+        }, {
+            name: "Dinner",
+            y: 195,
+            color: "#89A54E"
+        }, {
+            name: "Bedtime",
+            y: 202,
+            color: "#80699B"
+        }]
+    }]
+};
