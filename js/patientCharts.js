@@ -1,19 +1,12 @@
-var DailyBgEventWithAverage, DailyInsulinEventWithAverage, DailyCarbsEventWithAverage;
-
-/*function RefreshAllCharts() {
-    BindBg(0, 'nameHere');
-    BindInsulin(0, 'nameHere');
-    BindCarbs(0, 'nameHere');
-}*/
-
-function BindBg(p1, p2) {
+function BindBg(patientId, firstName) {
 
     new Highcharts.Chart({
         chart: {
-            renderTo: "bg" + p1
+            renderTo: "p" + patientId + "bg",
+
         },
         title: {
-            text: p2 + '\'s Blood Glucose History'
+            text: firstName + '\'s Blood Glucose History'
         },
         subtitle: {
             text: "Source: Insulin Wizard Mobile (pixelsyndicate.com)"
@@ -111,13 +104,13 @@ function BindBg(p1, p2) {
     });
 }
 
-function BindInsulin(p1, p2) {
+function BindInsulin(patientId, firstName) {
     new Highcharts.Chart({
         chart: {
-            renderTo: "insulin" + p1
+            renderTo: "p" + patientId + "insulin"
         },
         title: {
-            text: p2 + '\'s Insulin History'
+            text: firstName + '\'s Insulin History'
         },
         subtitle: {
             text: "Source: Insulin Wizard Mobile (pixelsyndicate.com)"
@@ -213,13 +206,13 @@ function BindInsulin(p1, p2) {
     });
 }
 
-function BindCarbs(p1, p2) {
+function BindCarbs(patientId, firstName) {
     new Highcharts.Chart({
         chart: {
-            renderTo: "carbs" + p1
+            renderTo: "p" + patientId + "carbs"
         },
         title: {
-            text: p2 + '\'s Carbohydrate History'
+            text: firstName + '\'s Carbohydrate History'
         },
         subtitle: {
             text: "Source: Insulin Wizard Mobile (pixelsyndicate.com)"
